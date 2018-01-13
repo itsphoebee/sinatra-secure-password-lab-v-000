@@ -75,6 +75,7 @@ class ApplicationController < Sinatra::Base
       redirect '/error'
     else
       @user.balance -= params[:withdrawal].to_f
+      @user.save
   end
 
  +  patch '/withdraw/:id' do
