@@ -76,20 +76,8 @@ class ApplicationController < Sinatra::Base
     else
       @user.balance -= params[:withdrawal].to_f
       @user.save
+    end
   end
-
- +  patch '/withdraw/:id' do
- +    @account = User.find(params[:id])
-     if @account.balance == nil || @account.balance < params[:withdrawal].to_f
-       redirect '/error'
-     else
-     @account.balance = @account.balance - params[:withdraw].to_f
-       @account.save
-     end
-     redirect '/account'
-  end
-
-
 
   helpers do
     def logged_in?
