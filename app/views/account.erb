@@ -2,6 +2,7 @@
 
 <p>Your account balance is: $<%=@user.balance%>.</p>
 <form method="post" action="/deposit/<%=@user.id%>">
+  <input id="hidden" type="hidden" name="_method" value="patch">
 <p> Make a deposit <input type="float" name="deposit" value="$0.00"></p>
 <input type="submit" name="" value="Deposit">
 </form>
