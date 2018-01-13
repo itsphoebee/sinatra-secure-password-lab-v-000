@@ -68,20 +68,15 @@ class ApplicationController < Sinatra::Base
     @user.save
     redirect '/account'
   end
-  +  patch '/deposit/:id' do
- +    @account = User.find(params[:id])
- +    if @account.balance == nil
- +      @account.balance = params[:deposit]
- +    else
- +      @account.balance += params[:deposit].to_f
- +    end
- +    @account.save
- +    redirect '/account'
- +  end
- +
+
+  patch 'withdrawal/:id' do
+    @user = User.find(params[:id])
+    if @user.balance < params[:withdraw].to_f
+  end
+  
  +  patch '/withdraw/:id' do
  +    @account = User.find(params[:id])
-     if @account.balance == nil || @account.balance < params[:withdraw].to_f
+     if @account.balance == nil || @account.balance < params[:withdrawal].to_f
        redirect '/error'
      else
      @account.balance = @account.balance - params[:withdraw].to_f
