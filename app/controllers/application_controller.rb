@@ -37,7 +37,6 @@ class ApplicationController < Sinatra::Base
 
   post "/login" do
     user = User.find_by(username:params[:username])
-    binding.pry
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect '/account'
@@ -63,11 +62,16 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
-  patch 'deposit/:user_id' do
-    "hello world"
+  patch 'deposit/:id' do
+    binding.pry
+    @user = User.find(params[:id])
+
+    @user.balance += params[:deposit].to_f
+    @user.save
+    redirect '/account'
   end
 
-  patch 'withdrawal/:user_id' do
+  patch 'withdrawal/:id' do
     @user = User.find(params[:id])
     if @user.balance < params[:withdrawal].to_f
       redirect '/error'
