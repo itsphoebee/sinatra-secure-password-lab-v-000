@@ -1,7 +1,7 @@
 <h1>Welcome <%=@user.username%></h1>
 
 <p>Your account balance is: $<%=@user.balance%>.</p>
-<form method="post" name
-<p> Click <a href="/deposit"> here </a> to make a deposit. </p>
+<form method="post" action="/deposit/<%=@user.id%>">
+<p> Make a deposit <input type="float" name="deposit" value="$0.00"></p> </p>
 <p> Click <a href="/withdrawal"> here </a> to make a withdrawal. </p>
 <p><a href="/logout">Log Out</a></p>
