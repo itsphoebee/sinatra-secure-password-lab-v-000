@@ -63,7 +63,7 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
-  patch 'deposit/:id' do
+  patch 'deposit/:user_id' do
     "hello world"
   end
 
