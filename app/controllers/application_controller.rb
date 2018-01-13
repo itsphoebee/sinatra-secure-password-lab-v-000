@@ -62,10 +62,9 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
-  patch 'deposit/:id' do
+  patch '/deposit/:id' do
     binding.pry
     @user = User.find(params[:id])
-
     @user.balance += params[:deposit].to_f
     @user.save
     redirect '/account'
