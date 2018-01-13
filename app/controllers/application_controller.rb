@@ -63,14 +63,13 @@ class ApplicationController < Sinatra::Base
   end
 
   patch '/deposit/:id' do
-    binding.pry
     @user = User.find(params[:id])
     @user.balance += params[:deposit].to_f
     @user.save
     redirect '/account'
   end
 
-  patch 'withdrawal/:id' do
+  patch '/withdrawal/:id' do
     @user = User.find(params[:id])
     if @user.balance < params[:withdrawal].to_f
       redirect '/error'
