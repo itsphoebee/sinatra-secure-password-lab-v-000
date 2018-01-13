@@ -72,6 +72,9 @@ class ApplicationController < Sinatra::Base
   patch 'withdrawal/:id' do
     @user = User.find(params[:id])
     if @user.balance < params[:withdrawal].to_f
+      redirect '/error'
+    else
+      @user.balance -= params[:withdrawal].to_f
   end
 
  +  patch '/withdraw/:id' do
